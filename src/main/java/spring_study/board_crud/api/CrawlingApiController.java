@@ -97,7 +97,7 @@ public class CrawlingApiController {
             Document doc = Jsoup.connect(url).get();
             
             // 원하는 데이터 추출 (예시: 제목 요소 추출)
-            Elements titleElement = doc.select("img");
+            Elements titleElement = doc.select("a");
             String title = titleElement.text();
             
             // API 응답으로 반환할 데이터 형식 구성 (예시: JSON 형식)
