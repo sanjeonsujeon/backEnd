@@ -100,6 +100,7 @@ public class BoardApiController {
     public WrapperClass paging(@PageableDefault(page = 1)Pageable pageable, Model model){
         // pageable.getPageNumber();
         Page<BoardDto> boardList = boardService.paging(pageable);
+
     }
-     */
+    */
 }

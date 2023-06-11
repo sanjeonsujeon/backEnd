@@ -47,7 +47,8 @@ public class BoardService {
         int pageLimit = 10; // 한 페이지에 보여줄 글 갯수
         //한페이지당 10개씩 글을 보여주고 정렬 기준은 id 기준으로 내림차순 정렬
         // page 위치에 있는 값은 0부터 시작함
-        Page<BoardEntity> boardEntities = 
+        //<>안에 있는게 영상에서는 BoardEntity로 나와 있음 유추하기에는 지금 작업한것에는 Board.java가 유력하므로 일단은 Board로 넣음
+        Page<Board> boardEntities = 
             boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
     }
     */
