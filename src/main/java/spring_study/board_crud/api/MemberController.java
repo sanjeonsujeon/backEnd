@@ -16,7 +16,7 @@ import spring_study.board_crud.service.MemberService;
 
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://172.22.200.51:3000/")
 public class MemberController {
     //생성자 주입
     private final MemberService memberService;
