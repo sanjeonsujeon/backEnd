@@ -40,11 +40,12 @@ public class BoardService {
     public void delete(Board board) {
         boardRepository.delete(board);
     }
-
+/* 
     public Page<BoardDto> paging(Pageable pageable) {
         int page = pageable.getPageNumber() -1;
         int pageLimit = 10; // 한 페이지에 보여줄 글 갯수
         Page<BoardEntity> boardEntities = 
         boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
     }
+    */
 }
