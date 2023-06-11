@@ -15,12 +15,22 @@ public class MemberService {
 
     public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
-        System.out.println(memberEntity.getStnumber());
         memberRepository.save(memberEntity);
+        
     }
 
     public boolean IDcheck(String userid) {
         Optional<MemberEntity> byUserid = memberRepository.findByUserid(userid);
+        //System.out.println(byUserid);
+        if (byUserid.isPresent()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean stnumCheck(int stnumber) {
+        Optional<MemberEntity> byUserid = memberRepository.findByStnumber(stnumber);
         //System.out.println(byUserid);
         if (byUserid.isPresent()){
             return true;
