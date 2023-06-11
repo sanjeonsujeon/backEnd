@@ -94,12 +94,12 @@ public class BoardApiController {
         return new ResponseEntity(body, headers, status);
     }
     
-/* 
+    /*
     //예시 /board/paging?page=1
     @GetMapping("/api/paging") // 게시판 페이징
     public WrapperClass paging(@PageableDefault(page = 1)Pageable pageable, Model model){
         // pageable.getPageNumber();
         Page<BoardDto> boardList = boardService.paging(pageable);
     }
-    */
+     */
 }
