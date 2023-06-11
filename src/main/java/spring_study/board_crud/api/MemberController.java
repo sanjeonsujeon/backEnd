@@ -23,8 +23,12 @@ public class MemberController {
     //로그인 API
     @PostMapping("api/signup-pp")
     public ResponseEntity save(@RequestBody MemberDTO memberDTO){
-        memberService.save(memberDTO);
-        return ResponseEntity.ok().build();
+        if(memberService.stnumCheck(memberDTO.getStnumber())==true){
+            return ResponseEntity.status(800).build();
+        }else{
+            memberService.save(memberDTO);
+            return ResponseEntity.ok().build();
+        }
     }
 
     //ID중복 확인
