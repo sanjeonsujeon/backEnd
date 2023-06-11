@@ -1,9 +1,14 @@
 package spring_study.board_crud.api;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring_study.board_crud.dto.BoardDeleteDto;
 import spring_study.board_crud.service.BoardService;
@@ -87,4 +92,13 @@ public class BoardApiController {
         }
         return new ResponseEntity(body, headers, status);
     }
+    
+/* 
+    //예시 /board/paging?page=1
+    @GetMapping("/api/paging") // 게시판 페이징
+    public WrapperClass paging(@PageableDefault(page = 1)Pageable pageable, Model model){
+        // pageable.getPageNumber();
+        Page<BoardDto> boardList = boardService.paging(pageable);
+    }
+    */
 }
