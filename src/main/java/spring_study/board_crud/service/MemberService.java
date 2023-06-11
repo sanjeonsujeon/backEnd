@@ -20,10 +20,11 @@ public class MemberService {
 
     public boolean IDcheck(String userid) {
         Optional<MemberEntity> byUserid = memberRepository.findByUserid(userid);
+        //System.out.println(byUserid);
         if (byUserid.isPresent()){
-            return false;
-        }else{
             return true;
+        }else{
+            return false;
         }
     }
 }
