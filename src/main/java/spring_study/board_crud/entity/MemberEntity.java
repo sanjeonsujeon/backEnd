@@ -30,14 +30,14 @@ public class MemberEntity {
     private String name;
 
     @Column
-    private int stnum;
+    private int stnumber;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
-        memberEntity.setStnum(memberDTO.getStnum());
+        memberEntity.setStnumber(memberDTO.getStnumber());
         return memberEntity;
     }
 
@@ -48,7 +48,7 @@ public class MemberEntity {
         memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
-        memberEntity.setStnum(memberDTO.getStnum());
+        memberEntity.setStnumber(memberDTO.getStnumber());
         return memberEntity;
     }
     

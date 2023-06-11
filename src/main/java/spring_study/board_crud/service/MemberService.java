@@ -15,6 +15,7 @@ public class MemberService {
 
     public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
+        System.out.println(memberEntity.getStnumber());
         memberRepository.save(memberEntity);
     }
 
