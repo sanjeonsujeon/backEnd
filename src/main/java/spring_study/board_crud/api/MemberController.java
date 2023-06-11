@@ -16,23 +16,28 @@ import spring_study.board_crud.service.MemberService;
 
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://172.22.200.51:3000/")
+@CrossOrigin(origins = "*")
 public class MemberController {
     //생성자 주입
     private final MemberService memberService;
     //로그인 API
     @PostMapping("api/signup-pp")
     public ResponseEntity save(@RequestBody MemberDTO memberDTO){
-        memberService.save(memberDTO);
-        return ResponseEntity.ok().build();
+        if(memberService.stnumCheck(memberDTO.getStnumber())==true){
+            return ResponseEntity.status(800).build();
+        }else{
+            memberService.save(memberDTO);
+            return ResponseEntity.ok().build();
+        }
     }
 
     //ID중복 확인
+
     @PostMapping("api/IDcheck")
     public ResponseEntity IDcheck(@RequestParam("userid") String userid){
-        System.out.println(userid);
-        boolean checkID = memberService.IDcheck(userid);
-        if(checkID == true){
+        //System.out.println(userid);
+        //System.out.println(memberService.IDcheck(userid));
+        if(memberService.IDcheck(userid) == true){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID중복");
         }else{
             return ResponseEntity.ok().build();
