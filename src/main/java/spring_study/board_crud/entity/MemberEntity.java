@@ -26,10 +26,10 @@ public class MemberEntity {
     @Column
     private String pw;
 
-    @Column(unique = true)
+    @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private int stnumber;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
