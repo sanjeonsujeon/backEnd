@@ -21,7 +21,7 @@ public class MemberEntity {
     private Long id;
 
     @Column(unique = true)
-    private String user_id;
+    private String userid;
 
     @Column
     private String pw;
@@ -30,14 +30,14 @@ public class MemberEntity {
     private String name;
 
     @Column
-    private int st_num;
+    private int stnum;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setUser_id(memberDTO.getUser_id());
+        memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
-        memberEntity.setSt_num(memberDTO.getSt_num());
+        memberEntity.setStnum(memberDTO.getStnum());
         return memberEntity;
     }
 
@@ -45,10 +45,10 @@ public class MemberEntity {
     public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId(memberDTO.getId());
-        memberEntity.setUser_id(memberDTO.getUser_id());
+        memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
-        memberEntity.setSt_num(memberDTO.getSt_num());
+        memberEntity.setStnum(memberDTO.getStnum());
         return memberEntity;
     }
     

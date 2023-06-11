@@ -14,18 +14,18 @@ import spring_study.board_crud.entity.MemberEntity;
 @ToString
 public class MemberDTO {
     private Long id;
-    private String user_id;
+    private String userid;
     private String pw;
     private String name;
-    private int st_num;
+    private int stnum;
 
     public static MemberDTO MemberDTO(MemberEntity memberEntity){
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(memberEntity.getId());
-        memberDTO.setUser_id(memberEntity.getUser_id());
+        memberDTO.setUserid(memberEntity.getUserid());
         memberDTO.setPw(memberEntity.getPw());
         memberDTO.setName(memberEntity.getName());
-        memberDTO.setSt_num(memberEntity.getSt_num());
+        memberDTO.setStnum(memberEntity.getStnum());
         return memberDTO;
     }
 }
