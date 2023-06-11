@@ -10,10 +10,10 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100 # 배치전략을 위해 필요
     database: mysql

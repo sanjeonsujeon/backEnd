@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000/")
 public class BoardApiController {
 
     private final BoardService boardService; // Autowired로 스프링 빈에 등록
