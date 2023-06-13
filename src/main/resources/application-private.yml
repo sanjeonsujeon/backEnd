@@ -1,4 +1,7 @@
 # application-private.yml
+jwt:
+  secret: VlpowkWosjkPOfhadfhajkdfhugjehjfhkahguhfkjADYHjgkjSGuDGDAGjghkshdfkREDFu
+
 spring:
   datasource:
     url: jdbc:mysql://172.22.200.51:3306/board_crud?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
