@@ -32,12 +32,16 @@ public class MemberEntity {
     @Column(unique = true)
     private int stnumber;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
+    @Column
+    private String refreshToken;
+
+    public static MemberEntity toMemberEntity(MemberDTO memberDTO ) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
         memberEntity.setStnumber(memberDTO.getStnumber());
+        memberEntity.setRefreshToken(memberDTO.getRefreshToken());
         return memberEntity;
     }
 
@@ -49,6 +53,7 @@ public class MemberEntity {
         memberEntity.setPw(memberDTO.getPw());
         memberEntity.setName(memberDTO.getName());
         memberEntity.setStnumber(memberDTO.getStnumber());
+        memberEntity.setRefreshToken(memberDTO.getRefreshToken());
         return memberEntity;
     }
     

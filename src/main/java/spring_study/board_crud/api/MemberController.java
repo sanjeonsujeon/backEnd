@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.common.net.HttpHeaders;
 
+import antlr.Token;
 import lombok.RequiredArgsConstructor;
 import spring_study.board_crud.dto.MemberDTO;
+import spring_study.board_crud.entity.MemberEntity;
 import spring_study.board_crud.service.MemberService;
 import spring_study.board_crud.service.TokenProvider;
 
@@ -32,17 +35,34 @@ public class MemberController {
     public ResponseEntity login(@RequestBody MemberDTO memberDTO) {
         if (memberService.PWchecking(memberDTO)) {
             TokenProvider tokenProvider = new TokenProvider();
-            String authorization = tokenProvider.createAccessToken(700000,memberDTO.getUserid());
-            String refreshtoken = tokenProvider.createToken(1800000);
-            System.out.println(authorization);
-            System.out.println(refreshtoken);
+            String refreshtoken = tokenProvider.createToken();
             memberService.saveRefreshToken(memberDTO.getUserid(), refreshtoken);
             return ResponseEntity.status(200)
-                    .header("Authorization", tokenProvider.createAccessToken(700000,memberDTO.getUserid()))
-                    .header("Refreshtoken", tokenProvider.createToken(1800000))
+                    .header("Refreshtoken",refreshtoken)
                     .build();
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID_PW 불일치");
+        }
+    }
+
+    @PostMapping("api/check-token")
+    public ResponseEntity checkToken(@RequestHeader("refreshtoken") String Token){
+        String DBtoken = memberService.getRefreshToken(Token);
+        if (Token.equals(DBtoken)){
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰값 불일치");
+        }
+    }
+
+    @GetMapping("api/logout")
+    public ResponseEntity<String> logout(@RequestHeader("refreshtoken") String Token){
+        MemberEntity memberEntity =  memberService.getEntity(Token);
+        boolean isDeleted = memberService.deleteRefreshToken(memberEntity.getUserid());
+        if (isDeleted) {
+            return ResponseEntity.ok("로그아웃이 완료됨");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그아웃에 실패했습니다");
         }
     }
     /* 
