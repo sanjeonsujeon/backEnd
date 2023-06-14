@@ -19,9 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
-
-    public List<Board> findBoards() {
-        return boardRepository.findAll();
+    public long getTotalIds() {
+        return boardRepository.count();
+    }
+    public Page<Board> findBoards(Pageable pageable) {
+        return boardRepository.findAll(pageable);
     }
 
     public Board findOne(Long boardId) {

@@ -24,14 +24,14 @@ public class CorsFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Expose-Headers", "Authorization, Refreshtoken");
+        response.setHeader("Access-Control-Expose-Headers", "Authorization, Refreshtoken, pageNumber, totalcount");
         response.setHeader("Access-Control-Exposed-Header","JwtProperties.HEADER");
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "*");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers",
-                "Origin, X-Requested-With, Content-Type, Accept, Authorization, Refreshtoken");
+                "Origin, X-Requested-With, Content-Type, Accept, Authorization, Refreshtoken, pageNumber, totalcount");
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
