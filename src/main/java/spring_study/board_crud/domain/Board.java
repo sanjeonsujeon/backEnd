@@ -4,7 +4,7 @@ package spring_study.board_crud.domain;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+//import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Data // @Getter @Setter
 @Table(name = "board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"id, title"})
+//@ToString(of = {"id, title"})
 public class Board {
     @Id
     @GeneratedValue
