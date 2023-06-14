@@ -5,6 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BoardDeleteDto {
+public class GraduateBoardDeleteDto {
     private Long id;
 }

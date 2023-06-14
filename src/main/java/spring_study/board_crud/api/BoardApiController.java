@@ -1,5 +1,10 @@
 package spring_study.board_crud.api;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,14 +15,11 @@ import spring_study.board_crud.dto.BoardDeleteDto;
 import spring_study.board_crud.dto.BoardDto;
 import spring_study.board_crud.service.BoardService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000/")
+//@CrossOrigin(origins = "http://localhost:3000/")
 public class BoardApiController {
 
     private final BoardService boardService; // Autowired로 스프링 빈에 등록
