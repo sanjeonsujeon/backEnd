@@ -5,6 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +22,13 @@ import spring_study.board_crud.service.BoardService;
 import spring_study.board_crud.domain.Board;
 import spring_study.board_crud.dto.BoardDto;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000/")
+//@CrossOrigin(origins = "http://localhost:3000/")
 public class BoardApiController {
     private final BoardService boardService; // Autowired로 스프링 빈에 등록
 
