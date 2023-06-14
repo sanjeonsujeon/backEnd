@@ -18,6 +18,7 @@ public class MemberDTO {
     private String pw;
     private String name;
     private int stnumber;
+    private String refreshToken;
 
     public static MemberDTO MemberDTO(MemberEntity memberEntity){
         MemberDTO memberDTO = new MemberDTO();
@@ -26,6 +27,7 @@ public class MemberDTO {
         memberDTO.setPw(memberEntity.getPw());
         memberDTO.setName(memberEntity.getName());
         memberDTO.setStnumber(memberEntity.getStnumber());
+        memberDTO.setRefreshToken(memberEntity.getRefreshToken());
         return memberDTO;
     }
 }
