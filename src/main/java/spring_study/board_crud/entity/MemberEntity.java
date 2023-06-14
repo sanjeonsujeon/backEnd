@@ -35,7 +35,7 @@ public class MemberEntity {
     @Column
     private String refreshToken;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO ) {
+    public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUserid(memberDTO.getUserid());
         memberEntity.setPw(memberDTO.getPw());
@@ -44,7 +44,6 @@ public class MemberEntity {
         memberEntity.setRefreshToken(memberDTO.getRefreshToken());
         return memberEntity;
     }
-
 
     public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
@@ -56,5 +55,5 @@ public class MemberEntity {
         memberEntity.setRefreshToken(memberDTO.getRefreshToken());
         return memberEntity;
     }
-    
+
 }

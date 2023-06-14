@@ -1,23 +1,10 @@
 package spring_study.board_crud.api;
 
-import java.nio.channels.MembershipKey;
-
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.google.common.net.HttpHeaders;
-
-import antlr.Token;
-import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 import spring_study.board_crud.dto.MemberDTO;
 import spring_study.board_crud.entity.MemberEntity;
 import spring_study.board_crud.service.MemberService;
@@ -38,7 +25,7 @@ public class MemberController {
             String refreshtoken = tokenProvider.createToken();
             memberService.saveRefreshToken(memberDTO.getUserid(), refreshtoken);
             return ResponseEntity.status(200)
-                    .header("Refreshtoken",refreshtoken)
+                    .header("Refreshtoken", refreshtoken)
                     .build();
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID_PW 불일치");
@@ -46,18 +33,18 @@ public class MemberController {
     }
 
     @PostMapping("api/check-token")
-    public ResponseEntity checkToken(@RequestHeader("refreshtoken") String Token){
+    public ResponseEntity checkToken(@RequestHeader("refreshtoken") String Token) {
         String DBtoken = memberService.getRefreshToken(Token);
-        if (Token.equals(DBtoken)){
+        if (Token.equals(DBtoken)) {
             return ResponseEntity.ok().build();
-        }else{
+        } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰값 불일치");
         }
     }
 
     @GetMapping("api/logout")
-    public ResponseEntity<String> logout(@RequestHeader("refreshtoken") String Token){
-        MemberEntity memberEntity =  memberService.getEntity(Token);
+    public ResponseEntity<String> logout(@RequestHeader("refreshtoken") String Token) {
+        MemberEntity memberEntity = memberService.getEntity(Token);
         boolean isDeleted = memberService.deleteRefreshToken(memberEntity.getUserid());
         if (isDeleted) {
             return ResponseEntity.ok("로그아웃이 완료됨");
@@ -65,33 +52,6 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그아웃에 실패했습니다");
         }
     }
-    /* 
-    @PostMapping("api/oauth/token")
-    public ResponseEntity refresh(@RequestHeader("authorization") String authorization,
-            @RequestHeader("refreshtoken") String refreshtoken, Authentication authentication) {
-        TokenProvider tokenProvider = new TokenProvider();
-        String str = "ppap";
-        System.out.println(authorization);
-        System.out.println(refreshtoken);
-        System.out.println(authentication.getUsername());
-        if (tokenProvider.validateToken(authorization)) {
-            String Authorization = tokenProvider.createAccessToken(700000,str);
-            String RefreshToken = tokenProvider.createToken(1800000);
-            return ResponseEntity.status(200)
-                    .header("Authorization", Authorization)
-                    .header("Refreshtoken", RefreshToken)
-                    .build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("토큰 갱신 불가");
-        }
-    }*/
-   /* @GetMapping("/my")
-    public MemberDTO findUser(Authentication authentication) throws Exception {
-        if (authentication == null) {
-            throw new Exception("회원 정보를 찾을 수 없습니다.");
-        }
-        return memberService.findUserid(authentication.getUsername());
-    }*/
 
     // 회원가입 API
     @PostMapping("api/signup-pp")
@@ -105,11 +65,8 @@ public class MemberController {
     }
 
     // ID중복 확인
-
     @PostMapping("api/IDcheck")
     public ResponseEntity IDcheck(@RequestParam("userid") String userid) {
-        // System.out.println(userid);
-        // System.out.println(memberService.IDcheck(userid));
         if (memberService.IDcheck(userid) == true) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID중복");
         } else {

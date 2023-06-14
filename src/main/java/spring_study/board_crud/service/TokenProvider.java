@@ -4,6 +4,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Calendar;
 import javax.crypto.SecretKey;
+
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -35,13 +36,11 @@ public class TokenProvider {
                 .compact();
     }
 
-    
-
     public boolean validateToken(String jwtToken) throws JwtException {
         try {
             Jws<Claims> claims = Jwts.parser()
-                                     .setSigningKey(key)
-                                     .parseClaimsJws(jwtToken);
+                    .setSigningKey(key)
+                    .parseClaimsJws(jwtToken);
             return claims.getBody().getExpiration().before(new Date()) == false;
         } catch (JwtException e) {
             e.printStackTrace();

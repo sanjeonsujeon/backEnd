@@ -9,6 +9,4 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
    Optional<MemberEntity> findByUserid(String userid);
    Optional<MemberEntity> findByRefreshToken(String refreshToken);
    Optional<MemberEntity> findByStnumber(int stnumber);
-
-
 }

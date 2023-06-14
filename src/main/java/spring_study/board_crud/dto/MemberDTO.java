@@ -20,7 +20,7 @@ public class MemberDTO {
     private int stnumber;
     private String refreshToken;
 
-    public static MemberDTO MemberDTO(MemberEntity memberEntity){
+    public static MemberDTO MemberDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(memberEntity.getId());
         memberDTO.setUserid(memberEntity.getUserid());

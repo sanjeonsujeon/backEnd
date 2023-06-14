@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import spring_study.board_crud.dto.MemberDTO;
 import spring_study.board_crud.entity.MemberEntity;
 import spring_study.board_crud.repository.MemberRepository;
+
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,10 +30,9 @@ public class MemberService {
     public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
         memberRepository.save(memberEntity);
-        
     }
 
-    public void saveRefreshToken(String userid, String refreshToken){
+    public void saveRefreshToken(String userid, String refreshToken) {
         MemberEntity memberEntity = memberRepository.findByUserid(userid).orElseThrow(() -> new NotFoundException("no user id"));
         memberEntity.setRefreshToken(refreshToken);
         memberRepository.save(memberEntity);
@@ -39,11 +40,10 @@ public class MemberService {
 
     public boolean IDcheck(String userid) {
         Optional<MemberEntity> byUserid = memberRepository.findByUserid(userid);
-        //System.out.println(byUserid);
         return byUserid.isPresent();
-
     }
-    public MemberEntity getEntity(String refreshToken){
+
+    public MemberEntity getEntity(String refreshToken) {
         Optional<MemberEntity> memberOptional = memberRepository.findByRefreshToken(refreshToken);
         if (memberOptional.isPresent()) {
             MemberEntity memberEntity = memberOptional.get();
@@ -51,6 +51,7 @@ public class MemberService {
         }
         throw new IllegalArgumentException("MemberEntity not found for userid: " + refreshToken);
     }
+
     public String getRefreshToken(String refreshToken) {
         Optional<MemberEntity> memberOptional = memberRepository.findByRefreshToken(refreshToken);
         if (memberOptional.isPresent()) {
@@ -62,7 +63,6 @@ public class MemberService {
 
     public boolean stnumCheck(int stnumber) {
         Optional<MemberEntity> byStnumber = memberRepository.findByStnumber(stnumber);
-        //System.out.println(byStnumber);
         return byStnumber.isPresent();
     }
 
@@ -71,20 +71,17 @@ public class MemberService {
         String pw = memberDTO.getPw();
         System.out.println(memberDTO.getUserid());
         System.out.println(memberDTO.getPw());
-        System.out.println(userid +" "+pw);
+        System.out.println(userid + " " + pw);
         Optional<MemberEntity> byUserid = memberRepository.findByUserid(userid);
-        if(IDcheck(userid)==true){
+        if (IDcheck(userid) == true) {
             MemberEntity user = byUserid.get();
             if (user.getPw().equals(pw)) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
-        
     }
-
-   
 }
